@@ -1,0 +1,18 @@
+project: "Waffle Stitch example"
+gauge: 4 in = 26 sts, 52 rows
+
+note: "This program demonstrates the ability to depict different types of stitches using group repeats"
+
+cast_on 43 sts
+for 9 in:
+    1 row: k1, p to last 1, k1.
+    2 row: k to end.
+    3 row: (k1, sl1p) to last 1, k1.
+    4 row: (k1, sl1k) to last 1, k1.
+    note: "end on row 3"
+end
+
+note: "follow this sequence as you bind off"
+row: k1, (k1,p1) to last 2, k2.
+
+bind_off

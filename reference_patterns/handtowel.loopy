@@ -1,0 +1,36 @@
+project: "Hand towel"
+gauge: 10 cm = 16 sts, 32 rows
+
+cast_on 40 sts
+
+for 4 times:
+    row: k to end.
+    row: k to end.
+end
+
+note: "1st stockinette band"
+for 3 times:
+    row: k to end.
+    row: p to end.
+    note: "End on a purl row"
+end
+
+note: "Main body"
+for 12 cm:
+    row: k to end.
+    row: k to end.
+end
+
+note: "2nd stockinette band"
+for 3 times:
+    row: k to end.
+    row: p to end.
+    note: "End on a purl row"
+end
+
+for 4 times:
+    row: k to end.
+    row: k to end.
+end
+
+bind_off

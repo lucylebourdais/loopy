@@ -1,0 +1,58 @@
+// loopy.lark
+
+start: title_stmt? gauge_stmt statement+
+
+title_stmt: "project:" ESCAPED_STRING //built-in terminal rules matches ""
+
+// A Loopy program always begins with a gauge declaration
+gauge_stmt: "gauge:" DEC UNIT "=" DEC "sts" "," DEC "rows"
+
+// Everything after gauge is a sequence of statements
+statement: cast_on_stmt
+         | bind_off_stmt
+         | for_stmt
+         | row_stmt
+         | note_stmt
+
+cast_on_stmt: "cast_on" INT "sts" -> cast_on_count
+            | "cast_on" DEC UNIT -> cast_on_width
+bind_off_stmt: "bind_off"
+
+note_stmt: "note:" ESCAPED_STRING
+
+// A for-loop allows repeated sections bound by length or row count
+for_stmt: "for" loop_bound ":" loop_item+ "end"
+
+loop_item: row_stmt | note_stmt
+
+loop_bound: DEC UNIT -> length_bound
+          | INT "times" -> count_bound
+
+// A row is a sequence of stitch items, ending in a period
+row_stmt: INT? "row:" stitch_item ("," stitch_item)* "."
+
+stitch_item: group_repeat | stitch_repeat
+
+// A single stitch type with an optional count (k2, p, k)
+stitch_repeat: STITCH_TYPE INT? repeat_mode?
+
+// A parenthesized group of stitches, repeated some way
+group_repeat: "(" group_stitch ("," group_stitch)* ")" repeat_mode
+group_stitch: STITCH_TYPE INT?
+
+repeat_mode: INT "times" -> times_mode
+           | "to" "end" -> to_end_mode
+           | "to" "last" INT -> to_last_mode
+
+STITCH_TYPE: "k"i //'i' will allow these to match "k","p","K","P", etc.
+            | "p"i
+            | "sl1k"i
+            | "sl1p"i
+UNIT: "in" | "cm" | "mm"
+INT: /[0-9]+/
+DEC: /[0-9]+(\.[0-9]+)?/
+
+%import common.WS
+%import common.ESCAPED_STRING
+%ignore WS
+%ignore /--[^\n]*/

@@ -1,0 +1,10 @@
+project: "Simple Dishcloth"
+gauge: 4 in = 10 sts, 12 rows
+
+cast_on 40 sts
+
+for 8 in:
+    row: k to end.
+end
+
+bind_off

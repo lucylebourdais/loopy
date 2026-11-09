@@ -1,0 +1,11 @@
+project: "Stockinette Scarf"
+gauge: 4 in = 32 sts, 26 rows
+
+cast_on 11 in
+
+for 71 in:
+    row: (k2, p2) to end.
+    row: (p2, k2) to end.
+end
+
+bind_off
